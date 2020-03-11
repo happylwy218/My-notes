@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Human {
+            // 可省略 constructor 属性
+            constructor(name) {
+                this.name = name;
+            };
+
+            eatting() {
+                console.log(this.name + '蛇皮');
+            };
+        };
+
+        var tom = new Human();
+        tom.eatting();
+        console.log('tom ==> ', tom);
+
+        class Animal extends Human {
+            // 重写 constructor
+            constructor(name, color) {
+                super(name); // Human 的constructor
+                this.color = color;
+            };
+
+            // 扩展Animal方法
+            swimming() {
+                console.log(this.color + this.name + '在丫jio');
+            };
+        };
+
+        let dog = new Animal('皮皮狗', 'red');
+        dog.eatting();
+        dog.swimming();
+    </script>
+</body>
+
+</html>
