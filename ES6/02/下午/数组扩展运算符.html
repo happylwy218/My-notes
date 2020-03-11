@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 从数组获取一个最大值
+        var nums = [4, 7, 12, 15, 26, 64];
+
+        var max1 = Math.max.apply(Math, nums);
+        console.log('max1 ==> ', max1);
+
+        // es6
+        var max2 = Math.max(...nums);
+        console.log('max2 ==> ', max2);
+
+        // 将一个数组的所有元素添加到另一个数组中
+        var a1 = [1, 2, 3];
+        var a2 = [4, 5, 6];
+        // for (var i = 0; i < a2.length; i++) {
+        //     a1.push(a2[i]);
+        // }
+
+        // var a3 = a1.concat(a2);
+        // console.log('a3 ==> ', a3);
+
+        // a1.push(...a2);
+
+        Array.prototype.push.apply(a1, a2);
+        console.log('a1 ==> ', a1);
+
+        // 连接数组
+        // b.concat(a, b, c)
+        var b1 = [...['a', 'b', 'c'], ...['d', 'e', 'f']];
+        console.log('b1 ==> ', b1);
+
+        var b2 = [...'hello'];
+        console.log('b2 ==> ', b2);
+
+        // 将一组值转换为数组 
+        var c1 = new Array(3);
+        console.log('c1 ==> ', c1);
+
+        var c2 = new Array(2, 5);
+        console.log('c2 ==> ', c2);
+
+        var c3 = Array.of(3, 5, 6, 7);
+        console.log('c3 ==> ', c3);
+
+        // 将类数组对象转换为数组对象
+        var d = {
+            0: 'fuck',
+            1: 'big',
+            2: 'dick',
+            3: 'ass',
+            length: 4
+        };
+
+        // es5
+        var d1 = [].slice.call(d);
+        console.log('d1 ==> ', d1);
+
+        // es6
+        var d2 = Array.from(d);
+        console.log('d2 ==> ', d2);
+
+        // find() 查找符合条件的第一个元素，返回一个元素，findIndex() 查找符合条件的第一个元素，返回元素下标，找不到返回-1
+        var e = ['小小鸟', '小鸟', '中鸟', '大鸟'];
+        var e1 = '大鸟1';
+        var e2 = e.find(function (v, i, o) {
+            console.log('v ==> ', v);
+            console.log('i ==> ', i);
+            console.log('o ==> ', o);
+            console.log('this == >', this);
+            console.log('第几个i == >', i);
+            return e1 == v
+        }, [
+            '老雕'
+        ])
+        console.log('e2 ==> ', e2);
+
+        var eItem = e.findIndex(function (v) {
+            return e1 == v;
+        });
+        console.log('eItem ==> ', eItem);
+    </script>
+</body>
+
+</html>

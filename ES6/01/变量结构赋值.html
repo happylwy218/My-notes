@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var [a, b, c, d] = [1, 2, 3, 4];
+        console.log('a == >', a);
+        console.log('b == >', b);
+        console.log('c == >', c);
+        console.log('d == >', d);
+
+        var [e, f, [g, h]] = [5, 6, [7, 8]];
+        console.log('e == >', e)
+        console.log('f == >', f)
+        console.log('g == >', g)
+        console.log('h == >', h)
+
+        let {
+            city: name,
+            level: dengji
+        } = {
+            level: '5A',
+            city: '广州'
+        };
+
+        // 如果一个对象键名和变量名一致，可以简写为一个变量名
+        // let {
+        //     city,
+        //     level
+        // } = {
+        //     level: '6A',
+        //     city: '广东'
+        // };
+
+        console.log('city ==>', name);
+        console.log('level ==>', dengji);
+    </script>
+</body>
+
+</html>

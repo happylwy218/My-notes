@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // es5
+        var func = function (a, b) {
+            a = a || 1;
+            b = b || 2;
+            console.log('a func ==> ', a);
+            console.log('b func ==> ', b);
+        };
+        func();
+
+        // es6
+        var func2 = function (a = 1, b = 2) {
+            console.log('a func2 ==> ', a);
+            console.log('b func2 ==> ', b);
+        };
+        func2();
+
+        // 获取没有默认值的形参个数
+        // 只要第一个形参有默认值 length都为0
+        console.log('func形参个数 ==> ', func.length);
+        console.log('func2形参个数 ==> ', func2.length);
+
+        // rest参数 语法：...变量名称，变量值类似于数组
+        function fruit(...shop) {
+            console.log('shop ==> ', shop);
+            for (let item of shop) {
+                console.log('item ==> ', item);
+            };
+
+            for (let i = 0; i < shop.length; i++) {
+                console.log('i ==> ', i);
+                console.log('shop[i] ==> ', shop[i]);
+            };
+
+            // 一般用于遍历关联数组和对象
+            for (let key in shop) {
+                console.log('key ==>', key);
+            };
+        };
+        fruit('百香果', '弱智过', '晒黑为', 'i爱喝味全');
+
+        // 获取函数名称
+        console.log(fruit.name);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // es5
+        // 没有参数也没有返回值
+        var f = function () {
+            console.log('es5');
+        };
+        f();
+
+        // 有一个参数没有返回值
+        var f1 = function (a) {
+            console.log('f1 a ==> ', a);
+        };
+        f1(10);
+
+        // 有参数有返回值
+        var f2 = function (b) {
+            return b;
+        };
+        var f2v = f2(666);
+        console.log('f2v ==> ', f2v);
+
+        // 函数返回对象
+        var f3 = function () {
+            return {
+                name: 'shabi',
+                age: '20'
+            };
+        };
+        var f3v = f3();
+        console.log('f3v ==> ', f3v);
+
+        // es6 箭头函数
+        // 没有参数也没有返回值
+        var g = () => {
+            console.log('es6');
+        };
+        g();
+
+        // 有一个参数没有返回值
+        var g1 = a => {
+            console.log('g1 a ==> ', a);
+        };
+        g1(10);
+
+        var g2 = (a, b) => {
+            console.log('a ==> ', a);
+            console.log('b ==> ', b);
+        };
+        g2(10, 20);
+
+        // 有参数有返回值 函数体只有一条语句
+        var g3 = b => b;
+        var g3v = g3(666);
+        console.log('g3v ==> ', g3v);
+
+        // 函数返回对象
+        // var g4 = () => ({
+        //     name: 'mask',
+        //     age: '18'
+        // });
+
+        var g4 = () => {
+            return {
+                name: 'mask',
+                age: '18'
+            }
+        };
+        var g4v = g4();
+        console.log('g4v ==> ', g4v);
+    </script>
+</body>
+
+</html>

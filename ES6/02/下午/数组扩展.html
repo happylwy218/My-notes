@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // filter(回调函数，回调函数的上下文)
+        var person = ['kevin', 'mark', 'jack', 'mask'];
+
+        var result = person.filter(function (v, i, o) {
+            console.log('this ==> ', this);
+            console.log('v ==> ', v);
+            console.log('i ==> ', i);
+            console.log('o ==> ', o);
+
+            o[o.length - 1] = this.city;
+
+            return v == this.city; // 如果返回true，就会把当前元素推进到一个新的数组中
+        }, {
+            city: '广州'
+        });
+        console.log('result ==> ', result);
+
+        Array.prototype.filterItem = function (fn, thisObject) {
+            // 回调函数
+            // 回调函数的上下文
+            let _ = [];
+            if (typeof fn === 'function') {
+                for (let i = 0; i < this.length; i++) {
+                    if (fn.call(thisObject, this[i], i, this)) {
+                        _.push(this[i]);
+                    }
+                };
+                return _;
+            } else {
+                throw new Error('数组的filterItem函数的第一个参数必须是函数');
+            }
+        };
+
+        let book = ['HTML', 'CSS', 'JavaScript'];
+        var data = book.filterItem(function (value, index, array) {
+            console.log('this ==> ', this);
+            console.log('value ==> ', value);
+            console.log('index ==> ', index);
+            console.log('array ==> ', array);
+            return true;
+        }, {
+            product: 'linux'
+        })
+
+        var cities = ['广州', '上海', '北京', '武汉'];
+        var province = [{
+            name: '广东',
+            city: '广州'
+        }, {
+            name: '湖北',
+            city: '武汉'
+        }, {
+            name: '魔都',
+            city: '上海'
+        }];
+        var citiesResult = cities.map(function (v, i, o) {
+            // return v;
+            for (let i = 0; i < this.length; i++) {
+                if (this[i].city == v) {
+                    return this[i].name;
+                }
+            }
+        }, province)
+
+        console.log('citiesResult ==> ', citiesResult);
+    </script>
+</body>
+
+</html>

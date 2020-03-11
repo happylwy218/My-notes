@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // window.isNaN()
+        // Number.isNaN()
+        console.log('window isNaN ==> ', window.isNaN('a'));
+        console.log('window isNaN ==> ', window.isNaN(NaN));
+
+        console.log('Number isNaN ==> ', Number.isNaN('b'));
+        console.log('Number isNaN ==> ', Number.isNaN(NaN));
+
+        // window.isFinite()
+        // Number.isFinite()
+        console.log('window isFinite ==> ', window.isFinite('a'));
+        console.log('window isFinite ==> ', window.isFinite(1));
+        console.log('window isFinite ==> ', window.isFinite(Infinity));
+
+        console.log('Number isFinite ==> ', Number.isFinite('b'));
+        console.log('Number isFinite ==> ', Number.isFinite(1));
+        console.log('Number isFinite ==> ', Number.isFinite(Infinity));
+
+        Number.prototype.isFinite = function () {
+            let v = this.valueOf();
+            return typeof v === 'number' && window.isFinite(v);
+        };
+
+        var num = 10;
+        var isNum = num.isFinite();
+        console.log('isNum ==> ', isNum);
+
+        // Math.floor() 向下取整
+        // Math.trunc() 去除小数位
+        console.log(Math.floor(4.99));
+        console.log(Math.trunc(4.99));
+        console.log(Math.floor(-4.99));
+        console.log(Math.trunc(-4.99));
+    </script>
+</body>
+
+</html>

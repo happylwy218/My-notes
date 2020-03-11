@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Symbol 用于唯一标志
+        let n = Symbol('找工作的地方');
+        let m = Symbol('养老的地方');
+        let test = {
+            name: 'youFuckMe',
+            [n]: '广州',
+            [m]: '广东'
+        };
+
+        console.log('test == > ', test);
+        console.log('啥玩意这是', test[m]);
+    </script>
+</body>
+
+</html>

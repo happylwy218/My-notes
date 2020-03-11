@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // es5
+        var person = 'mark';
+        var age = 'age';
+        var target = {
+            person: person,
+            age: 10,
+            getAge: function () {
+
+            }
+        }
+        // es6
+        var hello = Symbol('hello');
+        var source = {
+            person,
+            [age]: 10,
+            getAge() {},
+            [hello]: '你好'
+        };
+        // 添加属性
+        source.getPerson = function () {
+
+        };
+
+        // 获取对象Symbol类型的键名
+        var SymbolKeys = Object.getOwnPropertySymbols(source);
+        console.log('SymbolKeys ==> ', SymbolKeys);
+
+        // Object.assign() 合并对象
+        var tar = Object.assign({}, {
+            name: 'mask'
+        }, {
+            age: 21
+        }, {
+            hobby: 'playing',
+            name: 'tom'
+        });
+        console.log('tar ==> ', tar);
+
+        // Object.is() 严格判断两值是否相等
+        console.log(Object.is('1', 1));
+        console.log(Object.is([], []));
+
+        // 如果判断一个对象为空对象
+        var n = 0;
+        var oo = {};
+        // for (var key in oo) {
+        //     n++;
+        // };
+        // if (n > 0) {
+        //     console.log('oo不是空对象');
+        // };
+
+        console.log(JSON.stringify(oo) === '{}');
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // console.log('this ==> ', this);
+        var car = {
+            color: '紫色',
+            big: 'ass',
+
+            getColor: function () {
+                console.log('this ==> ', this);
+                console.log('this.color ==> ', this.color);
+                var f = () => {
+                    console.log('this ==> ', this);
+                    console.log('this.big ==> ', this.big);
+                };
+                f();
+            },
+
+            getBig: () => {
+                console.log('this ==> ', this);
+                console.log('this.big ==> ', this.big);
+            }
+        };
+
+        // 箭头函数的this在定义已经指向，并不是在调用时指向
+        // car.getColor();
+        // car.getBig();
+
+        // 箭头函数不能作为构造函数
+        // var F = (age) => {
+        //     this.age = age;
+        // };
+        // var f = new f();
+        // console.log('f ==> ', f);
+
+        // 箭头函数不能使用arguments
+        var h = function () {
+            console.log(arguments[0] + arguments[1]);
+        };
+        h(7, 8);
+
+        // var g = () => {
+        //     console.log(arguments[0] + arguments[1]);
+        // };
+        // g(8, 8);
+
+        // 使用rest参数替代arguments
+        var k = (...nums) => {
+            console.log(nums[0] + nums[1]);
+        };
+        k(8, 10);
+    </script>
+</body>
+
+</html>
