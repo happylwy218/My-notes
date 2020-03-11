@@ -13,6 +13,41 @@
             ['name', 'mask'],
             ['age', 10]
         ])
+
+        // 获取元素
+        console.log(map.get('age'));
+
+        // 设置元素
+        map.set('shabi', '是你');
+
+        let products = {
+            name: '鼠标',
+            price: '499'
+        };
+
+        // 将对象添加到map
+        for (let key in products) {
+            map.set(key, products[key])
+            console.log('key ==> ', key);
+        };
+
+        // 删除一个属性，删除成功返回true
+        // let isDelete = map.delete('name');
+        // console.log('isDelete ==> ', isDelete);
+
+        // 删除所有属性
+        // map.clear();
+
+        let keys = map.keys(); // 返回有map数据结构的键名组合遍历器
+        console.log('keys ==> ', keys);
+
+        let set = new Set();
+        for (let item of keys) {
+            console.log('item ==> ', item);
+            set.add(item);
+        };
+
+        console.log('set ==> ', set);
         console.log('map ==> ', map);
     </script>
 </body>
