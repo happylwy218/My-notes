@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 创建promise
+        let promise = new Promise((resolve, reject) => {
+            // resolve 已解决 表示成功
+            // reject 已拒绝 表示失败
+            // resolve('什么鬼');
+            reject('什么几把');
+        });
+
+        // Promise.prototype.then(成功执行的回调函数，失败执行的回调函数)
+
+        // promise.then(result => {
+        //         // console.log('result ==> ', result);
+        //         return result.slice(0, 1);
+        //     }, err => {
+        //         console.log('err ==> ', err);
+        //     })
+        //     .then(value => {
+        //         console.log('value ==> ', value);
+        //     })
+
+        // console.log('================');
+
+        promise
+            .then(result => {
+                console.log('result ==> ', result);
+            })
+            .catch(err => {
+                console.log('err ==> ', err);
+            })
+    </script>
+</body>
+
+</html>
