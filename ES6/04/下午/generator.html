@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function* modifyPwd() {
+            function f() {
+                return '状态一完成';
+            };
+
+            console.log('修改密码一');
+            yield f();
+            // return; 终止以下所有状态
+
+            console.log('修改密码二');
+            yield '状态二';
+
+            console.log('修改密码三');
+            yield '状态三';
+        }
+        // modifyPwd(); // 这个函数并不会立即执行
+
+        let m = modifyPwd();
+
+        let v1 = m.next();
+        console.log('v1 == > ', v1);
+
+        let v0 = m.return('已完成');
+        console.log('v0 == > ', v0);
+
+        let v2 = m.next();
+        console.log('v2 == > ', v2);
+
+        let v3 = m.next();
+        console.log('v3 == > ', v3);
+
+        let v4 = m.next();
+        console.log('v4 == > ', v4);
+
+        // m.return 终止执行 modifyPwd函数的状态执行
+    </script>
+</body>
+
+</html>
