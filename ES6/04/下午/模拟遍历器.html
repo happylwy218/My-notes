@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 模拟器遍历器
+        function makeIterator(arr) {
+            let index = 0;
+            return {
+                next: () => {
+                    // let o = index < arr.length ? {
+                    //     value: arr[index],
+                    //     done: false
+                    // } : {
+                    //     value: null,
+                    //     done: true
+                    // };
+                    // index++;
+                    // return o;
+
+                    return index < arr.length ? {
+                        value: arr[index++],
+                        done: false
+                    } : {
+                        value: null,
+                        done: true
+                    };
+                }
+            }
+        }
+
+        // 生成一个遍历器
+        let iterator = makeIterator([2, 5]);
+
+        let n1 = iterator.next();
+        console.log('n1 ==> ', n1);
+        let n2 = iterator.next();
+        console.log('n2 ==> ', n2);
+        let n3 = iterator.next();
+        console.log('n3 ==> ', n3);
+    </script>
+</body>
+
+</html>
