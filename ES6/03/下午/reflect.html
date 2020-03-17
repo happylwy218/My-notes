@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Reflect.apply(函数, 执行环境, 参数数组)
+        // ES5
+        let m1 = Math.max.apply(Math, [2, 9, 7]);
+        console.log('m1 ==> ', m1);
+
+        // ES6
+        let m2 = Reflect.apply(Math.max, Math, [3, 6, 10]);
+        console.log('m2 ==> ', m2);
+
+        let o1 = {
+            name: 'Mask',
+            getName() {
+                console.log('this.name ==> ', this.name);
+            }
+        };
+
+        let o2 = {
+            name: 'shabi'
+        };
+
+        // ES5
+        o1.getName.apply(o2);
+
+        // ES6
+        Reflect.apply(o1.getName, o2, []);
+
+        // Reflect.construct(构造函数, 构造函数的参数)
+        // ES5
+        function F(name) {
+            this.name = name;
+        };
+
+        F.prototype.getName = function () {
+            console.log('this.name == >', this.name);
+        };
+
+        class Fs {
+            constructor(name) {
+                this.name = name;
+            }
+
+            getNames() {
+                console.log('类this.name ==> ', this.name);
+            }
+        }
+
+        // let f = new F('浪子');
+
+        // ES6
+        // let f = Reflect.construct(F, ['傻逼']);
+        let f = Reflect.construct(Fs, ['傻逼']);
+        console.log('f == >', f);
+
+        // Reflect.get(对象, 对象的属性, 执行环境)
+        // ES5
+        // let n = f.name;
+
+        // ES6
+
+        let p = {
+            name: '猪八戒',
+            get getName() {
+                console.log(this.name);
+            }
+        };
+
+        let person = {
+            name: '嫦娥'
+        };
+
+        let n = Reflect.get(p, 'getName', person);
+        console.log('n ==> ', n);
+    </script>
+</body>
+
+</html>
