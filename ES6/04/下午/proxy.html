@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var duck = {
+            name: '丑小鸭',
+            color: '黄色'
+        };
+
+        // duck.name = '白天鹅';
+        // console.log('duck ==> ', duck.name);
+
+        // 设置duck拦截层(访问权限)
+        let proxy = new Proxy(duck, {
+            // 获取对象属性
+            get(target, key) {
+                console.log('target ==> ', target);
+                console.log('key ==> ', key);
+
+                // 很多逻辑判断允许后,就return值出去
+                // return target[key];
+                return Reflect.get(target, key);
+            },
+            set(target, key, value) {
+                console.log('target ==> ', target);
+                console.log('key ==> ', key);
+                console.log('value ==> ', value);
+                // return Reflect.set(target, key, value);
+                target[key] = value;
+            }
+        });
+
+        console.log('proxy ==> ', proxy);
+
+        // 获取proxy对象的属性
+        let proeprty = proxy.name;
+        console.log('proeprty ==> ', proeprty);
+
+        proxy.city = '广东';
+        proxy.name = '白天鹅';
+        console.log('proxy ==> ', proxy);
+    </script>
+</body>
+
+</html>
