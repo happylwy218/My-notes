@@ -9,8 +9,10 @@
 
 <body>
     <script>
+        let shit = Symbol('bigDick');
         let person = {
-            name: 'Mask'
+            name: 'Mask',
+            [shit]: '大几百'
         };
 
         // ES5
@@ -47,6 +49,81 @@
             configurable: false, // 是否可删除
             enumerable: true // 是否可枚举
         })
+
+        // 删除属性
+        // ES5
+        // delete person.name;
+
+        // ES6
+        // Reflect.deleteProperty(person, 'name');
+
+        // 判断对象是否含有某个属性
+        // ES5
+        // in 本身拥有或原型拥有的属性 hasOwnProperty本身拥有
+        console.log('name' in person);
+        console.log(person.hasOwnProperty('name'));
+
+        // ES6
+        console.log(Reflect.has(person, 'name'));
+
+        // 获取对象键名(普通和smybol类型的键名)
+        // ES5
+        // 获取普通键名集合 Object.getOwnPropertyNames()
+        var names = Object.getOwnPropertyNames(person);
+        console.log('names ==> ', names);
+
+        // 获取smybol类型键名集合 Object.getOwnPropertyNames()
+        var symbols = Object.getOwnPropertySymbols(person);
+        console.log('symbols ==> ', symbols);
+
+        var ks = Object.keys(person);
+        console.log('ks ==> ', ks);
+
+        // ES6
+        var keys = Reflect.ownKeys(person);
+        console.log('keys == > ', keys);
+
+        // 对象防扩展
+        // ES5
+        // Object.preventExtensions(person);
+
+        // console.log(Object.isExtensible(person));
+
+        // ES6
+        // Reflect.preventExtensions(person);
+
+        // console.log(Reflect.isExtensible(person));
+
+        person.cours = 'h5';
+
+        // 获取对象属性集合
+        // ES5
+        var attrs = Object.getOwnPropertyDescriptors(person);
+        console.log('attrs ==> ', attrs);
+
+        // ES6
+        var attr = Reflect.getOwnPropertyDescriptor(person, 'big');
+        console.log('attr ==> ', attr);
+
+        // 获取对象原型 __proto__
+        // ES5
+        // var proto = Object.getPrototypeOf(person);
+
+        // ES6
+        // var proto = Reflect.getPrototypeOf(person);
+        // console.log('proto ==> ', proto);
+
+        // 设置对象的对象
+        // ES5
+        person.__proto__.shabi = 'shini';
+        // Object.setPrototypeOf(person, {
+        //     city: '广州'
+        // });
+
+        // ES6
+        Reflect.setPrototypeOf(person, {
+            city: '广州'
+        });
 
         console.log('person ==> ', person);
     </script>
