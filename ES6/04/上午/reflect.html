@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let person = {
+            name: 'Mask'
+        };
+
+        // ES5
+        Object.defineProperty(person, 'height', {
+            value: '183cm',
+            writable: false, // 是否可修改
+            configurable: false, // 是否可删除
+            enumerable: true // 是否可枚举
+        })
+
+        for (let key in person) {
+            console.log('key ==> ', key);
+        }
+
+        Object.defineProperties(person, {
+            age: {
+                value: 21,
+                writable: false, // 是否可修改
+                configurable: false, // 是否可删除
+                enumerable: true // 是否可枚举
+            },
+            big: {
+                value: '屁股',
+                writable: false, // 是否可修改
+                configurable: false, // 是否可删除
+                enumerable: true // 是否可枚举
+            }
+        })
+
+        // ES6
+        Reflect.defineProperty(person, 'weigth', {
+            value: '60gk',
+            writable: false, // 是否可修改
+            configurable: false, // 是否可删除
+            enumerable: true // 是否可枚举
+        })
+
+        console.log('person ==> ', person);
+    </script>
+</body>
+
+</html>
