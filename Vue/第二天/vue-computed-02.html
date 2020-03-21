@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        全选：<input type="checkbox" v-model="checkAll">
+        <br>
+        <input type="checkbox" v-for="(item, key) in checks" :key="key" v-model="item.value">
+    </div>
+
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                checks: [{
+                    value: true
+                }, {
+                    value: true
+                }, {
+                    value: false
+                }, ],
+            },
+            computed: {
+                checkAll: {
+                    get() {
+                        return this.checks.every(check => check.value);
+                    },
+                    set(value) { // 双向绑定数据的时候就会用到set
+                        this.checks.forEach(check => {
+                            console.log('set ==> ', check);
+                            check.value = value;
+                        });
+                    }
+                }
+            },
+            methods: {
+
+            },
+        })
+    </script>
+</body>
+
+</html>

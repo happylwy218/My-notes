@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        {{testName}}
+        <br>
+        {{msg}}
+    </div>
+
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        // computed 有缓存 和 methods 没缓存 的区别
+        // computed 和 watch 支持异步 的区别
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                bigName: '大',
+                wahtName: '屁股',
+                msg: '牛批',
+                testName: ''
+            },
+            mounted() { // 生命周期 钩子函数 在不同的阶段会被调用
+                // this.getFullName();
+            },
+            watch: { // vm.$watch
+                bigName: { // 全写
+                    handler(newValue) {
+                        this.getFullName();
+                    },
+                    immediate: true // true
+                },
+                wahtName() { // 简写
+                    this.getFullName();
+                }
+            },
+            computed: { // 根据Object.defineProperty来实现的
+                // getFullName() { // get方法
+                //     console.log('getFullName执行了');
+                //     return this.bigName + this.wahtName;
+                // }
+            },
+            methods: {
+                // getFullName() {
+                //     console.log('getFullName执行了');
+                //     return this.bigName + this.wahtName;
+                // },
+                getFullName() {
+                    this.testName = this.bigName + this.wahtName;
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
