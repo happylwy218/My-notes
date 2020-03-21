@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 数组循环 -->
+        <!-- <div v-for="(item, index) in fruits" :key="index">
+            {{item}}
+            {{index}}
+        </div> -->
+        <!-- 对象循环 -->
+        <!-- <div v-for="(value, key) in info" :key="key">
+            {{value}}
+            {{key}}
+        </div> -->
+        <!-- <template v-for="i in 3">
+            <div :key="i+'_a'" :a="i+'_a'">{{i}}</div>
+            <div :key="`${i}_s`" :s="i+'_s'">{{i}}</div>
+        </template> -->
+
+        <!-- key 可以用来区分元素 -->
+        <div v-if="status">
+            <span>我是</span>
+            <input type="text" :key="1">
+        </div>
+        <div v-else>
+            <span>帅锅</span>
+            <input type="text" :key="2">
+        </div>
+
+        <!-- 尽量不要使用index作为key -->
+        <!-- 尽量使用唯一标识作为key -->
+    </div>
+
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                fruits: ['🍌', '🍎', '🍊'],
+                info: {
+                    name: 'Mask',
+                    age: 21,
+                    color: 'pink'
+                },
+                status: true
+            }
+        })
+    </script>
+</body>
+
+</html>

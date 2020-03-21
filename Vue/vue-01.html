@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- v-once 内部进行缓存 以后使用的都是缓存里的结果 -->
+        <div v-once>
+            {{msg}}
+        </div>
+        <!-- v-html innerHTML XSS攻击 不能将用户输入的内容展现出来 -->
+        <div v-html="d"></div>
+        <input type="text" v-model="d">
+
+        <div v-if="status"></div>
+        <template>
+            <div v-show="status">22222</div>
+        </template>
+    </div>
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <!-- mvvm model view viewModel mvc model view controller -->
+    <script>
+        // vm ==> viewModel
+        let vm = new Vue({
+            el: '#app',
+            // template: '<h1>hello world</h1>',
+            // 只要在模板中使用数据，就必须在实例上声明
+            data: {
+                msg: '大几百',
+                d: '<h1>hahaha</h1>',
+                status: true
+            }
+        })
+    </script>
+</body>
+
+</html>
