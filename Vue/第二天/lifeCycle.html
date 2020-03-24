@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        {{a}}
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                a: '哈哈哈哈'
+            },
+            // 在创建之前
+            beforeCreate() { // 钩子函数 之前beforexxx 之后xxxed
+                console.log('beforeCreate == > ', this, this.$data); // 初始化自己的生命周期 并且 绑定自己的事件
+            },
+            created() { // 这里可以写ajax请求
+                console.log('created == > ', this.$data); // 可以获取数据和调用的方法
+            },
+            beforeMount() { // 第一次调用渲染函数之前
+                console.log('渲染前');
+            },
+            mounted() { // 可获取真是DOM 因为页面已渲染完成
+                console.log('渲染后');
+                console.log('mounted == > ', this.$el.innerHTML);
+            },
+            beforeUpdate() {
+                console.log('beforeUpdate 更新前');
+            },
+            updated() { // 一般不要操作数据 会导致死循环
+                console.log('updated 更新后');
+            },
+            beforeDestroy() {
+                // 销毁前 当前实例还可以用
+            },
+            destroyed() {
+                // 销毁后 实例上的方法 监听都被移除
+                // 第一种 路由切换就会执行destroyed()
+                // 第二种 vm.$destroy()
+            },
+        })
+    </script>
+</body>
+
+</html>
