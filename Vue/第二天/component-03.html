@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <my-button :msg="content" a="奥" b="力" c="给" :d="666" e="6"></my-button>
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                content: '哈哈哈哈哈'
+            },
+            components: {
+                'MyButton': {
+                    props: {
+                        a: {},
+                        b: {},
+                        c: {},
+                        d: {
+                            type: Number
+                        },
+                        e: {
+                            type: String,
+                            // validator 校验器
+                            validator(value) {
+                                return value > 8
+                            }
+                        },
+                        msg: {
+                            // default 默认值
+                            // default: '未传值'
+                            type: String
+                        },
+                        arr: {
+                            type: Array,
+                            default: () => (['默', '认', '值']) // 属性校验中 如果是数组 / 对象 需要将默认值返回
+                        }
+                    },
+                    template: `<button>点我撒 {{msg}} {{a}} {{b}} {{c}} {{d}} {{arr}}</button>`
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

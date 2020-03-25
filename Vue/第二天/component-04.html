@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- props emit ($attrs $listeners) ($parent $chilidren) -->
+        <!-- 如果想在父级中绑定原生事件给组件 需要加.native 不加就认为是一个普通属性 -->
+        <!-- 儿子要调用父亲的方法 有三种方式 -->
+        <my-button @click="change" @mouseup="change"></my-button>
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                content: '哈哈哈哈哈'
+            },
+            methods: {
+                change() {
+                    alert('我执行了');
+                }
+            },
+            components: {
+                'MyButton': {
+                    mounted() {
+                        console.log(this.$attrs, this.$listeners);
+                    },
+                    // v-bind="$attrs" 绑定所有属性 v-on="$listeners" 绑定所有方法
+                    template: `<div>
+                    <button @click="$listeners.click()">方法一</button>
+                    <button @click="$emit('click')">方法二</button>
+                    <button v-on="$listeners">方法三</button>
+                    </div>`
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
