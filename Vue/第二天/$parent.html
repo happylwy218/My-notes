@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .title {
+            width: 100px;
+            border: 1px solid pink;
+            line-height: 35px;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <collapse>
+            <!-- v-slot:hello #hello -->
+            <template>
+                <collapse-item title="react">内容一</collapse-item>
+                <collapse-item title="vue">内容二</collapse-item>
+                <collapse-item title="node">内容三</collapse-item>
+            </template>
+        </collapse>
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        // slot 插槽
+        Vue.component('Collapse', {
+            template: `<div class="wrap">
+            <slot name="default"></slot>
+            </div>`,
+            // template: `<div class="wrap">
+            // <slot name="hello"></slot>
+            // </div>`,
+            methods: {
+                cut(childId) { // 只要组件儿子点击了 我就要知道当前点击的是谁
+                    // alert(childId);
+                    // $children 获取所有的儿子
+                    this.$children.forEach(chiid => {
+                        if (chiid._uid !== childId) {
+                            chiid.show = false;
+                        }
+                    });
+                }
+            },
+        });
+        Vue.component('CollapseItem', {
+            props: ['title'],
+            data() {
+                return {
+                    show: false
+                }
+            },
+            methods: {
+                // $parent 获取父组件的实例
+                change() {
+                    this.$parent.cut(this._uid);
+                    this.show = !this.show;
+                }
+            },
+            // :id="'title'+_uid" 使用id要这样写 _uid是唯一标识
+            template: `<div>
+                <div class="title" @click="change">{{title}}</div>
+                <div v-show="show">
+                    <slot></slot>
+                </div>
+            </div>`
+        });
+        let vm = new Vue({
+            el: '#app'
+        });
+    </script>
+</body>
+
+</html>
