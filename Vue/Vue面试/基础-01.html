@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 这是文本插值 -->
+        <span>{{msg}}</span>
+
+        <!-- 这是js表达式 -->
+        <span>我是{{showStatus ? '靓仔' : '傻仔'}}</span>
+
+        <!-- 这是动态属性id -->
+        <span :id="dtsxId"></span>
+
+        <!-- v-html 会有xss风险 会覆盖子组件 子标签 -->
+        <span v-html="newHtml">
+            <span>111</span>
+            <span>222</span>
+        </span>
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '你要加把劲呀',
+                showStatus: true,
+                dtsxId: `id-${Date.now()}`,
+                newHtml: `<span>啊啦啦啦啦</span>`
+            }
+        })
+    </script>
+</body>
+
+</html>

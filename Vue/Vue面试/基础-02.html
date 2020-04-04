@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <span>{{num}}</span>
+        <span>{{double1}}</span>
+        <span>{{double2}}</span>
+        <input type="text" v-model="double2">
+        <br>
+        <br>
+        <span>{{myName}}</span>
+        <input type="text" v-model="myName">
+        <br>
+        <br>
+        <span>{{info.city}}</span>
+        <input type="text" v-model="info">
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                num: 10,
+                myName: 'Mask',
+                info: {
+                    city: '广东'
+                }
+            },
+            // 用来监听数据更新的
+            // 如何深度监听 默认是浅监听
+            // 监听引用类型 拿不到 oldVal
+            watch: {
+                myName(oldVal, val) {
+                    console.log('myName ==> ', oldVal, val);
+                },
+                // info(oldVal, val) {
+                //     console.log('info ==> ', oldVal, val);
+                // }
+                info: {
+                    handler(oldVal, val) {
+                        console.log('info ==> ', oldVal, val);
+                    },
+                    deep: true
+                }
+            },
+            // 计算属性 有缓存 data不变则不会重新计算
+            // 缓存就是为了提高计算的性能
+            computed: {
+                double1() {
+                    return this.num * 2
+                },
+                double2: {
+                    get() {
+                        return this.num * 2
+                    },
+                    set(val) {
+                        this.num = val / 2
+                    }
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

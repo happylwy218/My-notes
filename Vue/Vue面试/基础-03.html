@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 动态class 动态style -->
+    <div id="app">
+        <span :class="isPink? 'sss': 'ddd'">啦啦啦</span>
+        <br>
+        <br>
+        <span :class="[pink, orange]">啦啦啦</span>
+        <br>
+        <br>
+        <span :style="sytleData">哈哈哈</span>
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                isPink: true,
+                isOrange: true,
+
+                pink: 'pink',
+                orange: 'orange',
+
+                sytleData: {
+                    fontSize: '40px',
+                    color: 'red',
+                    backgroundColor: '#ccc'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
