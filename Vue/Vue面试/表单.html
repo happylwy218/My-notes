@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>这是什么：{{name}}</p>
+        <p>这是什么：{{age}}</p>
+        <!-- 截取前面的空格 -->
+        <input type="text" v-model.trim="name">
+        <!-- 输完之后才会变化 -->
+        <input type="text" v-model.lazy="name">
+        <!-- 只获取数字数字 -->
+        <input type="text" v-model.number="age">
+        <br>
+        <br>
+
+        <p>多行文本：{{desc}}</p>
+        <textarea v-model="desc"></textarea>
+        <br>
+        <br>
+
+        <p>复选框：{{checked}}</p>
+        <input type="checkbox" v-model="checked">
+        <br>
+        <br>
+
+        <p>多个复选框：{{checkedNames}}</p>
+        <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+        <label for="jack">Jack</label>
+        <input type="checkbox" id="john" value="John" v-model="checkedNames">
+        <label for="john">John</label>
+        <input type="checkbox" id="mask" value="Mask" v-model="checkedNames">
+        <label for="mask">Mask</label>
+        <br>
+        <br>
+
+        <p>单选：{{gender}}</p>
+        <input type="radio" id="male" value="male" v-model="gender">
+        <label for="male">男</label>
+        <input type="radio" id="female" value="female" v-model="gender">
+        <label for="female">女</label>
+        <br>
+        <br>
+
+        <p>下拉列表：{{select}}</p>
+        <select v-model="select">
+            <option disabled>请选择</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                name: '干啥',
+                age: 18,
+                desc: '哈哈哈哈',
+                checked: true,
+                checkedNames: [],
+                gender: 'female',
+                select: ''
+            }
+        })
+    </script>
+</body>
+
+</html>
