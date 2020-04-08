@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{num}}</p>
+        <button @click="increment1">+1</button>
+        <!-- 如果要传多个参数的写法 -->
+        <button @click="increment2(2, $event)">+2</button>
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                num: 0
+            },
+            methods: {
+                increment1(event) {
+                    // 原生 event 对象
+                    console.log('event', event, event.__proto__.constructor);
+                    // target 是在哪个事件上监听的 事件被挂载在当前元素
+                    console.log(event.target);
+                    // currentTarget 被在什么地方触发的
+                    console.log(event.currentTarget);
+                    this.num++;
+                },
+                increment2(val, event) {
+                    console.log(event.target);
+                    this.num = this.num + val;
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
