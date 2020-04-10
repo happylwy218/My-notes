@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+
+  </div>
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script>
+    let vm = new Vue({
+      el: '#app',
+      data: {
+
+      },
+      // vue实例初始化，进行数据的观测
+      beforeCreate() {
+        console.log('beforeCreate')
+      },
+      // vue实例化完成 数据完成绑定 DOM 还未挂载
+      created() {
+        console.log('created')
+      },
+      // 挂载DOM之前
+      beforeMount() {
+        console.log('beforeMount')
+      },
+      // DOM已挂载 页面渲染完
+      mounted() {
+        console.log('mounted')
+      },
+      // 数据更新前
+      beforeUpdate() {
+        console.log('beforeUpdate')
+      },
+      // 数据更新后
+      updated() {
+        console.log('updated')
+      },
+      // 实例销毁之前 但实例还是可以使用的
+      // 一般这里做 接触自定义事件绑定 销毁子组件以及事件监听
+      beforeDestroy() {
+        console.log('beforeDestroy')
+      },
+      // 实例销毁后 实例不可使用了
+      destroyed() {
+        console.log('destroyed')
+      },
+    })
+  </script>
+</body>
+
+</html>
