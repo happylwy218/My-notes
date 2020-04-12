@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function fn() {
+      // 方法执行完后里面的 a 会被销毁
+      var a = 1;
+      console.log(a);
+    };
+    fn();
+
+    // 闭包：有权访问函数局部变量的函数，闭包就是个函数
+    // 创建闭包
+    // 1、在外层的函数声明一个受保护的局部变量
+    // 2、内层函数操作外层函数的受保护的局部变量
+    // 3、外层函数将内层函数返回到外部
+    // 4、返回外部的内层函数在外部被反复调用
+    // 闭包的优点 避免变量全局污染
+    // 闭包缺点 会造成内存泄露和内存溢出
+    // 内存泄露 本应该释放的内存没有释放
+    // 内存溢出 内存不足
+    function fun() {
+      // 受保护的局部变量 b
+      var b = 10;
+
+      // 内层函数
+      function c() {
+        // 内层函数操作外层函数受保护的局部变量 b
+        b++; // 活动对象 b
+        console.log('b ==> ', b);
+      }
+
+      return c; // c 就是闭包
+    };
+
+    var d = fun();
+    d();
+    d();
+    d();
+    // console.log('b ==> ', b);
+
+    for (var i = '哈'; i.length < 99; i += '哈') {
+      (function (i) {
+        setTimeout(function () {
+          console.log(i);
+        }, 0);
+      })(i);
+    }
+
+    // (function (v) {
+    //   console.log(v, this);
+    // })('哈哈')
+
+  </script>
+</body>
+
+</html>
