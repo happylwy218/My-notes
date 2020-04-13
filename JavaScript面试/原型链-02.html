@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // prototype.__proto__ ==> Object.prototype 所有对象的最终原型
+    Grand.prototype.grandName = 'grandMask';
+    function Grand() {
+
+    };
+    var grand = new Grand();
+
+    Father.prototype = grand;
+    function Father() {
+      this.fatherName = 'fatherMask';
+      this.myName = {
+        nm: 1,
+        nm2: 2
+      }
+    };
+    var father = new Father();
+
+    Son.prototype = father;
+    function Son() {
+      this.sonName = 'sonMask'
+    };
+    var son = new Son();
+
+    Person.prototype = {
+      height: 100
+    };
+    function Person() {
+      this.eat = function () {
+        this.height++;
+        return this.height;
+      };
+    };
+
+    var person = new Person();
+  </script>
+</body>
+
+</html>

@@ -34,19 +34,16 @@
       function c() {
         // 内层函数操作外层函数受保护的局部变量 b
         b++; // 活动对象 b
-        console.log('b ==> ', b);
+        return b
       }
 
       return c; // c 就是闭包
     };
 
     var d = fun();
-    d();
-    d();
-    d();
-    // console.log('b ==> ', b);
+    console.log('d ==> ', d());
 
-    for (var i = '哈'; i.length < 99; i += '哈') {
+    for (var i = '哈'; i.length <= 3; i += '哈') {
       (function (i) {
         setTimeout(function () {
           console.log(i);
