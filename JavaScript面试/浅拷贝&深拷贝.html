@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var obj1 = {
+      name: 'mask',
+      age: 20,
+      big: 'dick'
+    };
+
+    var obj2 = obj1;
+
+    obj2.name = '傻逼';
+
+    console.log(obj1, obj2);
+    // Object.assign ==> 浅拷贝
+    // var obj3 = Object.assign({}, obj2);
+    // ... 也可以实现浅拷贝
+    var obj3 = { ...obj2 };
+    obj3.name = '靓仔';
+    console.log(obj3);
+
+    var obj4 = {
+      name: 'mask',
+      age: 20,
+      big: 'dick',
+      myBig: {
+        you: 'ass'
+      }
+    };
+    console.log(obj4);
+    // var obj5 = Object.assign({}, obj4);
+    var obj5 = { ...obj4 };
+    console.log(obj5);
+
+    // JSON.parse(JSON.stringify(Object)) 深拷贝
+    var obj6 = JSON.parse(JSON.stringify(obj5));
+    obj6.myBig.you = 'fuck';
+    console.log(obj6);
+
+  </script>
+</body>
+
+</html>
